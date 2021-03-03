@@ -10,6 +10,8 @@ target 'konjokonjo' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNSpAuth', :path => '../node_modules/react-native-sp-auth'
+
   # target 'konjokonjoTests' do
   #   inherit! :complete
   #   # Pods for testing

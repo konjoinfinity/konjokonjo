@@ -8,9 +8,39 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import EIcon from 'react-native-vector-icons/Entypo'
 import OIcon from 'react-native-vector-icons/Octicons'
 import IIcon from 'react-native-vector-icons/Ionicons'
+import RNSharePointAuth from 'react-native-sp-auth'
 
 
 var screenWidth = Dimensions.get('window').width * PixelRatio.get(), screenHeight = Dimensions.get('window').height * PixelRatio.get()
+
+myLoginButton = async () => {
+  const sp = new RNSharePointAuth("https://lssoftware.sharepoint.com/");
+  const { digest, token } = await sp.login("WesleyScholl@LSsoftware.onmicrosoft.com ", "TAsgiBT$1$1");
+  if (token) {
+    await Alert.alert("Login Successfull");
+    fetch("https://lssoftware.sharepoint.com/_api/site/lists", {
+      method: "GET",
+      headers: {
+        "Accept": "application/json;odata=verbose",
+        "Cookie": token,
+        "Content-Type": "application/json"
+      }
+    })
+      .then((y) => y.json())
+      .then((y) => {
+        var conStr = "List Names:";
+        y.d.results.forEach(function (item) {
+          conStr += item.Title + ", ";
+        })
+        console.log(conStr)
+      })
+    // this.setState({status:conStr})})
+    // await this.setState({status:token});
+    // await Alert.alert(digest+ " " +token);
+    // await console.log(digest,token)
+  }
+  // this.setState({status:"Livingston"});
+}
 
 function LogoTitle() {
   return (
@@ -22,6 +52,9 @@ function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text style={{ fontSize: 20, padding: Dimensions.get('window').height * 0.04 }}>Konjo LifeSystem</Text>
+      <View style={styles.card}>
+        <TouchableOpacity style={{ backgroundColor: "#4AA748" }} title="Doc 8" onPress={() => Alert.alert('open doc 8')} />
+      </View>
       <TextInput style={styles.textInput} />
     </View>
   );
@@ -32,33 +65,6 @@ function KnowledgeScreen({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <ScrollView>
         <Text style={{ fontSize: 20, padding: Dimensions.get('window').height * 0.04, textAlign: 'center' }}>Knowledge</Text>
-        <View style={styles.card}>
-          <Button title="Doc 1" onPress={() => Alert.alert('open doc 1')} />
-        </View>
-        <View style={{ padding: Dimensions.get('window').height * 0.009 }}></View>
-        <View style={styles.card}>
-          <Button title="Doc 2" onPress={() => Alert.alert('open doc 2')} />
-        </View>
-        <View style={{ padding: Dimensions.get('window').height * 0.009 }}></View>
-        <View style={styles.card}>
-          <Button title="Doc 3" onPress={() => Alert.alert('open doc 3')} />
-        </View>
-        <View style={{ padding: Dimensions.get('window').height * 0.009 }}></View>
-        <View style={styles.card}>
-          <Button title="Doc 4" onPress={() => Alert.alert('open doc 4')} />
-        </View>
-        <View style={{ padding: Dimensions.get('window').height * 0.009 }}></View>
-        <View style={styles.card}>
-          <Button title="Doc 5" onPress={() => Alert.alert('open doc 5')} />
-        </View>
-        <View style={{ padding: Dimensions.get('window').height * 0.009 }}></View>
-        <View style={styles.card}>
-          <Button title="Doc 6" onPress={() => Alert.alert('open doc 6')} />
-        </View>
-        <View style={{ padding: Dimensions.get('window').height * 0.009 }}></View>
-        <View style={styles.card}>
-          <Button title="Doc 7" onPress={() => Alert.alert('open doc 7')} />
-        </View>
         <View style={{ padding: Dimensions.get('window').height * 0.009 }}></View>
         <View style={styles.card}>
           <Button title="Doc 8" onPress={() => Alert.alert('open doc 8')} />
