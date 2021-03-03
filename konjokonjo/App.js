@@ -18,7 +18,7 @@ myLoginButton = async () => {
   const { digest, token } = await sp.login("WesleyScholl@LSsoftware.onmicrosoft.com ", "TAsgiBT$1$1");
   if (token) {
     await Alert.alert("Login Successfull");
-    fetch("https://lssoftware.sharepoint.com/_api/site/lists", {
+    fetch("https://lssoftware.sharepoint.com/_api/web/lists", {
       method: "GET",
       headers: {
         "Accept": "application/json;odata=verbose",
@@ -52,9 +52,9 @@ function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text style={{ fontSize: 20, padding: Dimensions.get('window').height * 0.04 }}>Konjo LifeSystem</Text>
-      <View style={styles.card}>
-        <TouchableOpacity style={{ backgroundColor: "#4AA748" }} title="Doc 8" onPress={() => Alert.alert('open doc 8')} />
-      </View>
+      <TouchableOpacity style={styles.loginButton} onPress={() => this.myLoginButton()}>
+        <Text style={{ fontSize: 20, textAlign: 'center' }}>Login</Text>
+      </TouchableOpacity>
       <TextInput style={styles.textInput} />
     </View>
   );
@@ -162,6 +162,17 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     borderRadius: 15,
     textAlign: "center"
+  },
+  loginButton: {
+    borderColor: "#CCCCCC",
+    borderWidth: 1,
+    height: Dimensions.get('window').height * 0.08,
+    width: Dimensions.get('window').width * 0.85,
+    fontSize: 25,
+    padding: 15,
+    borderRadius: 15,
+    textAlign: "center",
+    backgroundColor: "green"
   },
   card: {
     borderColor: "#CCCCCC",
