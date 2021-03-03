@@ -12,6 +12,8 @@ import RNSharePointAuth from 'react-native-sp-auth'
 
 
 var screenWidth = Dimensions.get('window').width * PixelRatio.get(), screenHeight = Dimensions.get('window').height * PixelRatio.get()
+var lslist = ""
+let mine;
 
 myLoginButton = async () => {
   const sp = new RNSharePointAuth("https://lssoftware.sharepoint.com/");
@@ -31,8 +33,10 @@ myLoginButton = async () => {
         var conStr = "List Names:";
         y.d.results.forEach(function (item) {
           conStr += item.Title + ", ";
+          lslist = item;
         })
         console.log(conStr)
+        Alert.alert(conStr)
       })
     // this.setState({status:conStr})})
     // await this.setState({status:token});
@@ -55,7 +59,7 @@ function HomeScreen({ navigation }) {
       <TouchableOpacity style={styles.loginButton} onPress={() => this.myLoginButton()}>
         <Text style={{ fontSize: 20, textAlign: 'center' }}>Login</Text>
       </TouchableOpacity>
-      <TextInput style={styles.textInput} />
+      {/* <TextInput style={styles.textInput} /> */}
     </View>
   );
 }
