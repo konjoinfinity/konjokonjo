@@ -4,7 +4,6 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { BottomTabBarHeightContext, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import EIcon from 'react-native-vector-icons/Entypo'
 import OIcon from 'react-native-vector-icons/Octicons'
 import IIcon from 'react-native-vector-icons/Ionicons'

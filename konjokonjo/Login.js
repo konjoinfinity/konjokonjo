@@ -7,18 +7,6 @@ import { useNavigation } from '@react-navigation/native';
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
 
-function LoginButtonTest() {
-    const navigation = useNavigation();
-
-    return (
-        <TouchableOpacity
-            style={styles.loginButton}
-            onPress={() => { navigation.navigate('Home') }}>
-            <Text style={styles.buttonText}>Login 🔑</Text>
-        </TouchableOpacity>
-    );
-}
-
 class LoginScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -95,6 +83,16 @@ class LoginScreen extends React.Component {
     }
 
     render() {
+        function LoginButtonTest() {
+            const navigation = useNavigation();
+            return (
+                <TouchableOpacity
+                    style={styles.loginButton}
+                    onPress={() => { navigation.navigate('Home') }}>
+                    <Text style={styles.buttonText}>Login 🔑</Text>
+                </TouchableOpacity>
+            );
+        }
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <ScrollView>
