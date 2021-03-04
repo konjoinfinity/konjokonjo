@@ -81,5 +81,5 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         textAlign: "center",
         backgroundColor: "green"
-    }
+    },
 })

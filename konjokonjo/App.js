@@ -11,6 +11,9 @@ import IIcon from 'react-native-vector-icons/Ionicons'
 import Knowledge from './Knowledge'
 import Settings from './Settings'
 import Home from "./Home";
+import Signin from './Login'
+
+let userToken;
 
 function LogoTitle() { return (<Image style={{ width: 40, height: 40 }} source={require('./klogo.png')} />) }
 
@@ -19,6 +22,17 @@ function HomeScreen({ navigation }) { return (<Home />) }
 function KnowledgeScreen({ navigation }) { return (<Knowledge />) }
 
 function SettingsScreen({ navigation }) { return (<Settings />) }
+
+function SplashScreen() {
+  return (
+    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: "#81c784" }}>
+      <Image source={require("./logo.png")} style={{ width: Dimensions.get('window').width * 0.95, height: Dimensions.get('window').height * 0.25 }} />
+    </View>
+  );
+}
+
+function Login({ navigation }) { return (<Signin />) }
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -61,7 +75,8 @@ class App extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <NavigationContainer>
-          <Stack.Navigator mode="modal">
+          <Stack.Navigator mode="modal" initialRouteName={Login}>
+            <Stack.Screen name="Login" component={Login} options={{ headerTitle: LogoTitle, headerStyle: { backgroundColor: '#4AA748' } }} />
             <Stack.Screen name="Home" component={TabStack} options={{ headerTitle: LogoTitle, headerStyle: { backgroundColor: '#4AA748' } }} />
           </Stack.Navigator>
         </NavigationContainer>
@@ -114,5 +129,46 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 15,
     textAlign: "center"
+  },
+  container: {
+    flex: 1,
+    paddingTop: 10
+  },
+  header: {
+    fontSize: 30,
+    textAlign: "center",
+    margin: 10
+  },
+  inputContainer: {
+    paddingTop: 15
+  },
+  loginButton: {
+    borderWidth: 1,
+    borderColor: "#007BFF",
+    backgroundColor: "#007BFF",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  checkButton: {
+    borderWidth: 1,
+    borderColor: "#752794",
+    backgroundColor: "#752794",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  signupButton: {
+    borderWidth: 1,
+    borderColor: "#12C16D",
+    backgroundColor: "#12C16D",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
   }
 })
