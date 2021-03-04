@@ -7,7 +7,9 @@ import RNSharePointAuth from 'react-native-sp-auth'
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            list: ""
+        };
     }
 
     myLoginButton = async () => {
@@ -15,7 +17,7 @@ class Home extends React.Component {
         const { digest, token } = await sp.login("WesleyScholl@LSsoftware.onmicrosoft.com ", "TAsgiBT$1$1");
         if (token) {
             await Alert.alert("Login Successfull");
-            fetch("https://lssoftware.sharepoint.com/_api/web/lists", {
+            fetch("https://lssoftware.sharepoint.com/_api/Web/Lists(guid'4541133b-d5cc-4eff-8671-c72c134a06fa')/Items", {
                 method: "GET",
                 headers: {
                     "Accept": "application/json;odata=verbose",
@@ -25,24 +27,44 @@ class Home extends React.Component {
             })
                 .then((y) => y.json())
                 .then((y) => {
-                    var conStr = "List Names:";
-                    y.d.results.forEach(function (item) {
-                        conStr += item.Title + ", ";
-                    })
-                    console.log(conStr)
-                    Alert.alert(conStr)
+                    // var conStr = "List Names:";
+                    // y.d.results.Knowledge.forEach(function (item) {
+                    //     conStr += item.Title + ", ";
+                    // })
+                    console.log(y.d.results)
+                    this.setState({ list: y.d.results });
+
                 })
         }
     }
 
     render() {
+        console.log(this.state)
+        let lslist;
+        this.state.list &&
+            (lslist = this.state.list.map((item, id) => {
+                return (
+                    <View style={{ borderRadius: 15, padding: Dimensions.get('window').height * 0.009, margin: Dimensions.get('window').height * 0.009 }} key={id}>
+                        <Text style={{ fontSize: Dimensions.get('window').height * 0.015, textAlign: "center", padding: Dimensions.get('window').height * 0.0000001 }}>
+                            {item.Title}
+                        </Text>
+                        <Text style={{ fontSize: Dimensions.get('window').height * 0.015, textAlign: "center", padding: Dimensions.get('window').width * 0.0000001 }}>
+                            Tags: {item.Tags}
+                        </Text>
+                    </View>
+                );
+            }));
         return (
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                <Text style={{ fontSize: 20, padding: Dimensions.get('window').height * 0.04 }}>Konjo LifeSystem</Text>
-                <TouchableOpacity style={styles.loginButton} onPress={() => this.myLoginButton()}>
-                    <Text style={{ fontSize: 20, textAlign: 'center' }}>Login</Text>
-                </TouchableOpacity>
-            </View>
+            <ScrollView>
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+
+                    <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Konjo LifeSystem</Text>
+                    <TouchableOpacity style={styles.loginButton} onPress={() => this.myLoginButton()}>
+                        <Text style={{ fontSize: 20, textAlign: 'center' }}>Login</Text>
+                    </TouchableOpacity>
+                    {lslist}
+                </View>
+            </ScrollView>
         );
     }
 }
