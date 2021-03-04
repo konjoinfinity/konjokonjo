@@ -2,7 +2,6 @@ import React from "react";
 import { Image, StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Keyboard, Alert, Dimensions } from "react-native";
 import SInfo from 'react-native-sensitive-info';
 import RNSharePointAuth from 'react-native-sp-auth'
-import { useNavigation } from '@react-navigation/native';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -69,12 +68,12 @@ class LoginScreen extends React.Component {
             // WesleyScholl@LSsoftware.onmicrosoft.com
             // TAsgiBT$1$1
             if (token) {
-                await Alert.alert("Login Successfull")
+                await Alert.alert("Login Successful")
                 console.log(this.state)
                 console.log(token)
                 this.onValueChange(STORAGE_KEY, token);
                 this.onValueChange(STORAGE_USER, this.state.email);
-                this.props.navigation('Home');
+                this.props.navigation.push('Home');
                 this.loginClear();
             }
         } else {
@@ -140,11 +139,7 @@ class LoginScreen extends React.Component {
         );
     }
 }
-export default function (props) {
-    const navigation = useNavigation();
-
-    return <LoginScreen {...props} navigation={navigation} />;
-}
+export default LoginScreen
 
 const styles = StyleSheet.create({
     container: {

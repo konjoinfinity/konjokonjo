@@ -31,7 +31,7 @@ function SplashScreen() {
   );
 }
 
-function Login({ navigation }) { return (<Signin />) }
+function Login({ navigation }) { return (<Signin {...navigation} />) }
 
 
 const Stack = createStackNavigator();
