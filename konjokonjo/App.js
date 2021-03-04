@@ -8,95 +8,17 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import EIcon from 'react-native-vector-icons/Entypo'
 import OIcon from 'react-native-vector-icons/Octicons'
 import IIcon from 'react-native-vector-icons/Ionicons'
-import RNSharePointAuth from 'react-native-sp-auth'
+import Knowledge from './Knowledge'
+import Settings from './Settings'
+import Home from "./Home";
 
+function LogoTitle() { return (<Image style={{ width: 40, height: 40 }} source={require('./klogo.png')} />) }
 
-var screenWidth = Dimensions.get('window').width * PixelRatio.get(), screenHeight = Dimensions.get('window').height * PixelRatio.get()
-var lslist = ""
-let mine;
+function HomeScreen({ navigation }) { return (<Home />) }
 
-myLoginButton = async () => {
-  const sp = new RNSharePointAuth("https://lssoftware.sharepoint.com/");
-  const { digest, token } = await sp.login("WesleyScholl@LSsoftware.onmicrosoft.com ", "TAsgiBT$1$1");
-  if (token) {
-    await Alert.alert("Login Successfull");
-    fetch("https://lssoftware.sharepoint.com/_api/web/lists", {
-      method: "GET",
-      headers: {
-        "Accept": "application/json;odata=verbose",
-        "Cookie": token,
-        "Content-Type": "application/json"
-      }
-    })
-      .then((y) => y.json())
-      .then((y) => {
-        var conStr = "List Names:";
-        y.d.results.forEach(function (item) {
-          conStr += item.Title + ", ";
-          lslist = item;
-        })
-        console.log(conStr)
-        Alert.alert(conStr)
-      })
-    // this.setState({status:conStr})})
-    // await this.setState({status:token});
-    // await Alert.alert(digest+ " " +token);
-    // await console.log(digest,token)
-  }
-  // this.setState({status:"Livingston"});
-}
+function KnowledgeScreen({ navigation }) { return (<Knowledge />) }
 
-function LogoTitle() {
-  return (
-    <Image style={{ width: 40, height: 40 }} source={require('./klogo.png')} />
-  );
-}
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={{ fontSize: 20, padding: Dimensions.get('window').height * 0.04 }}>Konjo LifeSystem</Text>
-      <TouchableOpacity style={styles.loginButton} onPress={() => this.myLoginButton()}>
-        <Text style={{ fontSize: 20, textAlign: 'center' }}>Login</Text>
-      </TouchableOpacity>
-      {/* <TextInput style={styles.textInput} /> */}
-    </View>
-  );
-}
-
-function KnowledgeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <ScrollView>
-        <Text style={{ fontSize: 20, padding: Dimensions.get('window').height * 0.04, textAlign: 'center' }}>Knowledge</Text>
-        <View style={{ padding: Dimensions.get('window').height * 0.009 }}></View>
-        <View style={styles.card}>
-          <Button title="Doc 8" onPress={() => Alert.alert('open doc 8')} />
-        </View>
-      </ScrollView>
-    </View>
-  );
-}
-
-function SettingsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontSize: 20, padding: Dimensions.get('window').height * 0.04, textAlign: 'center' }}>Settings</Text>
-      <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
-      <View style={styles.settingcard}>
-        <Button title="Setting 1" onPress={() => Alert.alert('adjust setting 1')} />
-      </View>
-      <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
-      <View style={styles.settingcard}>
-        <Button title="Setting 2" onPress={() => Alert.alert('adjust setting 2')} />
-      </View>
-      <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
-      <View style={styles.settingcard}>
-        <Button title="Setting 3" onPress={() => Alert.alert('adjust setting 3')} />
-      </View>
-    </View>
-  );
-}
+function SettingsScreen({ navigation }) { return (<Settings />) }
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -132,13 +54,8 @@ function TabStack({ navigation }) {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      knowledge: "test"
-    };
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {};
   }
-
-  handleChange(knowledge) { this.setState({ email }) }
 
   render() {
     return (
