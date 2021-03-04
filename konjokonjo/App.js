@@ -70,9 +70,9 @@ class App extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <NavigationContainer>
-          <Stack.Navigator mode="modal">
+          <Stack.Navigator mode='card'>
             <Stack.Screen name="Login" component={Login} options={{ headerTitle: LogoTitle, headerStyle: { backgroundColor: '#4AA748' } }} />
-            <Stack.Screen name="Home" component={TabStack} options={{ headerTitle: LogoTitle, headerStyle: { backgroundColor: '#4AA748' } }} />
+            <Stack.Screen name="Home" component={TabStack} options={{ headerTitle: LogoTitle, headerStyle: { backgroundColor: '#4AA748' }, headerLeft: null, gestureEnabled: false }} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
