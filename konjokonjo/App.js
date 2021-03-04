@@ -15,7 +15,7 @@ import Login from './Login'
 
 function LogoTitle() { return (<Image style={{ width: 40, height: 40 }} source={require('./klogo.png')} />) }
 
-function HomeScreen({ navigation }) { return (<Home />) }
+function HomeScreen({ navigation }) { return (<Home options={{ gesturesEnabled: false }} />) }
 
 function KnowledgeScreen({ navigation }) { return (<Knowledge />) }
 
@@ -38,14 +38,14 @@ function TabStack({ navigation }) {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === 'Konjo') {
+          if (route.name === 'Home') {
             iconName = focused ? 'text' : 'text';
           } else if (route.name === 'Settings') {
             iconName = focused ? 'settings' : 'settings';
           } else if (route.name === 'Knowledge') {
             iconName = focused ? 'documents-outline' : 'documents-outline';
           }
-          return route.name == 'Konjo' ? <EIcon name={iconName} size={size} color={color} style={{ paddingTop: 10 }} /> : route.name == 'Settings' ? <OIcon name={iconName} size={size} color={color} style={{ paddingTop: 10 }} /> : <IIcon name={iconName} size={size} color={color} style={{ paddingTop: 10 }} />
+          return route.name == 'Home' ? <EIcon name={iconName} size={size} color={color} style={{ paddingTop: 10 }} /> : route.name == 'Settings' ? <OIcon name={iconName} size={size} color={color} style={{ paddingTop: 10 }} /> : <IIcon name={iconName} size={size} color={color} style={{ paddingTop: 10 }} />
         },
       })}
       tabBarOptions={{
@@ -72,7 +72,7 @@ class App extends React.Component {
         <NavigationContainer>
           <Stack.Navigator mode='card'>
             <Stack.Screen name="Login" component={Login} options={{ headerTitle: LogoTitle, headerStyle: { backgroundColor: '#4AA748' } }} />
-            <Stack.Screen name="Home" component={TabStack} options={{ headerTitle: LogoTitle, headerStyle: { backgroundColor: '#4AA748' }, headerLeft: null, gestureEnabled: false }} />
+            <Stack.Screen name="Home" component={TabStack} options={{ headerTitle: LogoTitle, headerStyle: { backgroundColor: '#4AA748' }, headerLeft: null, }} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

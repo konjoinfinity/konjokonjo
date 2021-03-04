@@ -13,7 +13,7 @@ function LoginButtonTest() {
     return (
         <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => navigation.navigate('Home')}>
+            onPress={() => { navigation.navigate('Home') }}>
             <Text style={styles.buttonText}>Login 🔑</Text>
         </TouchableOpacity>
     );
