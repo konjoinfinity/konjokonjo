@@ -11,9 +11,7 @@ import IIcon from 'react-native-vector-icons/Ionicons'
 import Knowledge from './Knowledge'
 import Settings from './Settings'
 import Home from "./Home";
-import Signin from './Login'
-
-let userToken;
+import Login from './Login'
 
 function LogoTitle() { return (<Image style={{ width: 40, height: 40 }} source={require('./klogo.png')} />) }
 
@@ -30,9 +28,6 @@ function SplashScreen() {
     </View>
   );
 }
-
-function Login({ navigation }) { return (<Signin {...navigation} />) }
-
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -58,7 +53,7 @@ function TabStack({ navigation }) {
         inactiveTintColor: 'gray',
       }}
     >
-      <Tab.Screen name="Konjo" component={HomeScreen} options={{ headerTitle: props => <LogoTitle {...props} /> }} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{ headerTitle: props => <LogoTitle {...props} /> }} />
       <Tab.Screen name="Knowledge" component={KnowledgeScreen} options={{ tabBarBadge: 8, headerTitle: props => <LogoTitle {...props} /> }} />
       <Tab.Screen name="Settings" component={SettingsScreen} options={{ headerTitle: props => <LogoTitle {...props} /> }} />
     </Tab.Navigator>
@@ -75,7 +70,7 @@ class App extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <NavigationContainer>
-          <Stack.Navigator mode="modal" initialRouteName={Login}>
+          <Stack.Navigator mode="modal">
             <Stack.Screen name="Login" component={Login} options={{ headerTitle: LogoTitle, headerStyle: { backgroundColor: '#4AA748' } }} />
             <Stack.Screen name="Home" component={TabStack} options={{ headerTitle: LogoTitle, headerStyle: { backgroundColor: '#4AA748' } }} />
           </Stack.Navigator>

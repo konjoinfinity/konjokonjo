@@ -2,9 +2,22 @@ import React from "react";
 import { Image, StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Keyboard, Alert, Dimensions } from "react-native";
 import SInfo from 'react-native-sensitive-info';
 import RNSharePointAuth from 'react-native-sp-auth'
+import { useNavigation } from '@react-navigation/native';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
+
+function LoginButtonTest() {
+    const navigation = useNavigation();
+
+    return (
+        <TouchableOpacity
+            style={styles.loginButton}
+            onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.buttonText}>Login 🔑</Text>
+        </TouchableOpacity>
+    );
+}
 
 class LoginScreen extends React.Component {
     constructor(props) {
@@ -25,7 +38,7 @@ class LoginScreen extends React.Component {
         if (username !== undefined) {
             await SInfo.deleteItem(STORAGE_KEY, {});
             await SInfo.deleteItem(STORAGE_USER, {});
-            const passchange = this.props.navigation.getParam('passchange', 'false');
+            // const passchange = this.props.navigation.getParam('passchange', 'false');
             if (passchange === true) {
                 Alert.alert('Password changed. Please login with your new password.');
             } else {
@@ -73,7 +86,7 @@ class LoginScreen extends React.Component {
                 console.log(token)
                 this.onValueChange(STORAGE_KEY, token);
                 this.onValueChange(STORAGE_USER, this.state.email);
-                this.props.navigation.push('Home');
+                navigation.navigate('Home');
                 this.loginClear();
             }
         } else {
@@ -82,7 +95,6 @@ class LoginScreen extends React.Component {
     }
 
     render() {
-        const { navigation } = this.props;
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <ScrollView>
@@ -117,11 +129,7 @@ class LoginScreen extends React.Component {
                                 returnKeyType='send' />
                         </View>
                         <View style={styles.inputContainer}>
-                            <TouchableOpacity
-                                style={styles.loginButton}
-                                onPress={() => this.handleLogin()}>
-                                <Text style={styles.buttonText}>Login 🔑</Text>
-                            </TouchableOpacity>
+                            <LoginButtonTest />
                             <TouchableOpacity
                                 style={styles.signupButton}
                                 onPress={() => this.props.navigation.push("Signup")}>
@@ -139,6 +147,7 @@ class LoginScreen extends React.Component {
         );
     }
 }
+
 export default LoginScreen
 
 const styles = StyleSheet.create({
