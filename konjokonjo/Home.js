@@ -1,5 +1,8 @@
 import React from "react";
-import { View, StatusBar, Text, Button, Image, TouchableOpacity, StyleSheet, Platform, SafeAreaView, KeyboardAvoidingView, TextInput, Dimensions, PixelRatio, Alert, ScrollView } from 'react-native';
+import {
+    View, StatusBar, Text, Button, Image, TouchableOpacity, StyleSheet, Platform, SafeAreaView,
+    KeyboardAvoidingView, TextInput, Dimensions, PixelRatio, Alert, ScrollView
+} from 'react-native';
 import 'react-native-gesture-handler';
 import RNSharePointAuth from 'react-native-sp-auth'
 
@@ -12,11 +15,15 @@ class Home extends React.Component {
         };
     }
 
+    // add show docs here
+    // componentDidMount() {   
+    // }
+
     myLoginButton = async () => {
         const sp = new RNSharePointAuth("https://lssoftware.sharepoint.com/");
         const { digest, token } = await sp.login("WesleyScholl@LSsoftware.onmicrosoft.com ", "TAsgiBT$1$1");
         if (token) {
-            await Alert.alert("Login Successfull");
+            await Alert.alert("Login Successful");
             fetch("https://lssoftware.sharepoint.com/_api/Web/Lists(guid'4541133b-d5cc-4eff-8671-c72c134a06fa')/Items", {
                 method: "GET",
                 headers: {
@@ -33,7 +40,6 @@ class Home extends React.Component {
                     // })
                     console.log(y.d.results)
                     this.setState({ list: y.d.results });
-
                 })
         }
     }
@@ -60,7 +66,7 @@ class Home extends React.Component {
 
                     <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Konjo LifeSystem</Text>
                     <TouchableOpacity style={styles.loginButton} onPress={() => this.myLoginButton()}>
-                        <Text style={{ fontSize: 20, textAlign: 'center' }}>Login</Text>
+                        <Text style={{ fontSize: 20, textAlign: 'center' }}>Show Docs</Text>
                     </TouchableOpacity>
                     {lslist}
                 </View>
