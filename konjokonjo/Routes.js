@@ -7,7 +7,6 @@ import HomeScreen from "./Home"
 import KnowledgeScreen from "./Knowledge"
 import SettingsScreen from "./Settings"
 import { View, TouchableOpacity, Dimensions, Text, Image } from "react-native"
-import Icon from "react-native-vector-icons/FontAwesome5"
 import AuthLoadScreen from "./AuthLoad"
 import LoginScreen from "./Login"
 import SignupScreen from "./Signup"
@@ -61,7 +60,7 @@ const AppStack = createStackNavigator({
                 }
             }),
         navigationOptions: ({ navigation }) => ({
-            title: `Konjo`,
+            title: `Konjo LifeSystem`,
             headerStyle: { backgroundColor: '#81c784' },
             headerTitleStyle: {
                 color: "#ffffff", fontSize: 25, fontWeight: '400'
