@@ -77,7 +77,7 @@ class LoginScreen extends React.Component {
                 this.props.navigation.navigate('Home')
                 this.loginClear();
             } else {
-                Alert.alert("The username or password did not match.");
+                Alert.alert("User does not have a valid token.");
             }
         } else {
             Alert.alert("Please enter a valid email.");

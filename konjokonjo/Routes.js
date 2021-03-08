@@ -6,7 +6,7 @@ import { createSwitchNavigator } from "react-navigation"
 import HomeScreen from "./Home"
 import KnowledgeScreen from "./Knowledge"
 import SettingsScreen from "./Settings"
-import { View, TouchableOpacity, Dimensions, Text, Image } from "react-native"
+import { View, TouchableOpacity, Dimensions, Text, Image, Alert } from "react-native"
 import AuthLoadScreen from "./AuthLoad"
 import LoginScreen from "./Login"
 import SignupScreen from "./Signup"
@@ -58,7 +58,6 @@ const AppStack = createStackNavigator({
         },
             {
                 initialRouteName: 'Home',
-                headerTitle: () => <LogoTitle />,
                 swipeEnabled: false,
                 tabBarPosition: 'bottom',
                 tabBarOptions: {
@@ -71,26 +70,29 @@ const AppStack = createStackNavigator({
             }),
         navigationOptions: ({ navigation }) => ({
             title: `Konjo LifeSystem`,
+            headerTitle: () => <LogoTitle />,
             headerStyle: { backgroundColor: '#81c784' },
             headerTitleStyle: {
                 color: "#ffffff", fontSize: 25, fontWeight: '400'
             },
-            headerRight: () => (<View style={{ flexDirection: "row" }}>
-                <TouchableOpacity accessibilityLabel="chat" style={{
-                    height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginRight: 15,
-                    borderRadius: 50, padding: 2, backgroundColor: "#ffffff", shadowColor: 'black', shadowOpacity: 0.5, shadowOffset: { width: 2, height: 2 }
-                }}>
-                    {/* onPress={() => navigation.push("PubChat")} */}
-                    <MIcon name="logout" color="#43a047" size={18} style={{ height: 18, width: 18, textAlign: 'center' }} /></TouchableOpacity>
-            </View>),
-            headerLeft: () => (<View style={{ flexDirection: "row" }}>
-                <TouchableOpacity accessibilityLabel="chat" style={{
-                    height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginLeft: 15,
-                    borderRadius: 50, padding: 2, backgroundColor: "#ffffff", shadowColor: 'black', shadowOpacity: 0.5, shadowOffset: { width: 2, height: 2 }
-                }}>
-                    {/* onPress={() => navigation.push("Push")} */}
-                    <MatIcon name="information-variant" color="#43a047" size={18} style={{ height: 18, width: 18, textAlign: 'center' }} /></TouchableOpacity>
-            </View>)
+            headerRight: null,
+            // () => (<View style={{ flexDirection: "row" }}>
+            //     <TouchableOpacity accessibilityLabel="Logout" style={{
+            //         height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginRight: 15,
+            //         borderRadius: 50, padding: 2, backgroundColor: "#ffffff", shadowColor: 'black', shadowOpacity: 0.5, shadowOffset: { width: 2, height: 2 }
+            //     }} onPress={() => Alert.alert("Info")}>
+            //         {/* onPress={() => navigation.push("PubChat")} */}
+            //         <MIcon name="logout" color="#43a047" size={18} style={{ height: 18, width: 18, textAlign: 'center' }} /></TouchableOpacity>
+            // </View>),
+            headerLeft: null
+            // () => (<View style={{ flexDirection: "row" }}>
+            //     <TouchableOpacity accessibilityLabel="info" style={{
+            //         height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginLeft: 15,
+            //         borderRadius: 50, padding: 2, backgroundColor: "#ffffff", shadowColor: 'black', shadowOpacity: 0.5, shadowOffset: { width: 2, height: 2 }
+            //     }} onPress={() => Alert.alert("Info")}>
+            //         {/* onPress={() => navigation.push("Push")} */}
+            //         <MatIcon name="information-variant" color="#43a047" size={18} style={{ height: 18, width: 18, textAlign: 'center' }} /></TouchableOpacity>
+            // </View>)
         })
     },
     // Chat: ChatScreen,
