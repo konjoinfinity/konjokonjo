@@ -318,7 +318,7 @@ class New extends React.Component {
                         pasteAsPlainText={true}
                     />
                 </ScrollView>
-                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} keyboardVerticalOffset={95}>
                     <RichToolbar
                         style={[styles.richBar, dark && styles.richBarDark]}
                         flatContainerStyle={styles.flatStyle}
