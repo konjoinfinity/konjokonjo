@@ -37,16 +37,13 @@ class Knowledge extends React.Component {
         try {
             // trying to restore session
             const digest = await sp.renewDigest();
-            console.log(digest)
         } catch (e) {
             // can't automatic restore the session, read token from Storage
             const token = await SInfo.getItem(STORAGE_KEY, {});
-            console.log(token)
             if (token) {
                 // await sp.setToken(token);
                 // try {
                 //     const digest = await sp.renewDigest();
-                //     console.log(digest)
                 // } catch (e1) {
                 // can't restore the session, re-login
                 const username = await SInfo.getItem(STORAGE_USER, {});
