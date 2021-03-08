@@ -2,7 +2,7 @@ import React from "react";
 import { Image, StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Keyboard, Alert, Dimensions } from "react-native";
 import SInfo from 'react-native-sensitive-info';
 import RNSharePointAuth from 'react-native-sp-auth'
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -83,16 +83,16 @@ class LoginScreen extends React.Component {
     }
 
     render() {
-        function LoginButtonTest() {
-            const navigation = useNavigation();
-            return (
-                <TouchableOpacity
-                    style={styles.loginButton}
-                    onPress={() => { navigation.navigate('Home') }}>
-                    <Text style={styles.buttonText}>Login 🔑</Text>
-                </TouchableOpacity>
-            );
-        }
+        // function LoginButtonTest() {
+        //     const navigation = useNavigation();
+        //     return (
+        //         <TouchableOpacity
+        //             style={styles.loginButton}
+        //             onPress={() => { navigation.navigate('Home') }}>
+        //             <Text style={styles.buttonText}>Login 🔑</Text>
+        //         </TouchableOpacity>
+        //     );
+        // }
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <ScrollView>
@@ -127,7 +127,11 @@ class LoginScreen extends React.Component {
                                 returnKeyType='send' />
                         </View>
                         <View style={styles.inputContainer}>
-                            <LoginButtonTest />
+                            <TouchableOpacity
+                                style={styles.loginButton}
+                                onPress={() => { this.props.navigation.navigate('Home') }}>
+                                <Text style={styles.buttonText}>Login 🔑</Text>
+                            </TouchableOpacity>
                             <TouchableOpacity
                                 style={styles.signupButton}
                                 onPress={() => this.props.navigation.push("Signup")}>

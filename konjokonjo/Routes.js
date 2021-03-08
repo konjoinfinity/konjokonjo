@@ -13,6 +13,8 @@ import SignupScreen from "./Signup"
 import EIcon from 'react-native-vector-icons/Entypo'
 import OIcon from 'react-native-vector-icons/Octicons'
 import IIcon from 'react-native-vector-icons/Ionicons'
+import Icon from "react-native-vector-icons/FontAwesome5"
+import MatIcon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
 const AppStack = createStackNavigator({
@@ -69,24 +71,22 @@ const AppStack = createStackNavigator({
                 <TouchableOpacity accessibilityLabel="chat" style={{
                     height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginRight: 15,
                     borderRadius: 50, padding: 2, backgroundColor: "#ffffff", shadowColor: 'black', shadowOpacity: 0.5, shadowOffset: { width: 2, height: 2 }
-                }} onPress={() => navigation.push("Push")}>
+                }}>
+                    {/* onPress={() => navigation.push("Push")} */}
                     <MatIcon name="information-variant" color="#43a047" size={18} style={{ height: 18, width: 18, textAlign: 'center' }} /></TouchableOpacity>
-                <TouchableOpacity accessibilityLabel="chat" style={{
-                    height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginRight: 15,
-                    borderRadius: 50, padding: 2, backgroundColor: "#ffffff", shadowColor: 'black', shadowOpacity: 0.5, shadowOffset: { width: 2, height: 2 }
-                }} onPress={() => navigation.push("Chat")}>
-                    <MatIcon name="chat-processing" color="#43a047" size={18} style={{ height: 18, width: 18, textAlign: 'center' }} /></TouchableOpacity></View>),
+            </View>),
             headerLeft: () => (<View style={{ flexDirection: "row" }}>
                 <TouchableOpacity accessibilityLabel="chat" style={{
                     height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginLeft: 15,
                     borderRadius: 50, padding: 2, backgroundColor: "#ffffff", shadowColor: 'black', shadowOpacity: 0.5, shadowOffset: { width: 2, height: 2 }
-                }} onPress={() => navigation.push("PubChat")}>
+                }}>
+                    {/* onPress={() => navigation.push("PubChat")} */}
                     <MatIcon name="chat" color="#43a047" size={18} style={{ height: 18, width: 18, textAlign: 'center' }} /></TouchableOpacity></View>)
         })
     },
-    Chat: ChatScreen,
-    Push: PushScreen,
-    PubChat: PubChatScreen
+    // Chat: ChatScreen,
+    // Push: PushScreen,
+    // PubChat: PubChatScreen
 })
 
 const AuthStack = createStackNavigator({ Login: LoginScreen, Signup: SignupScreen },
@@ -94,7 +94,7 @@ const AuthStack = createStackNavigator({ Login: LoginScreen, Signup: SignupScree
         initialRouteName: 'Login',
         headerTitleAlign: 'center',
         defaultNavigationOptions: ({
-            title: `Konjo`, headerStyle: { backgroundColor: '#81c784' },
+            title: `Konjo LifeSystem`, headerStyle: { backgroundColor: '#81c784' },
             headerTitleStyle: { color: "#ffffff", fontSize: 25, textAlign: "center", fontWeight: '400' }
         })
     })
