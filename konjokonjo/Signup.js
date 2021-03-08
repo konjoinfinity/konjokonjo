@@ -8,12 +8,6 @@ import SInfo from 'react-native-sensitive-info';
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
 
-class LogoTitle extends React.Component {
-    render() {
-        return (<Image source={require("./klogo.png")} style={{ width: 30, height: 30 }} />);
-    }
-}
-
 class SignupScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -28,11 +22,6 @@ class SignupScreen extends React.Component {
         this.handleSignup = this.handleSignup.bind(this);
         this.loginClear = this.loginClear.bind(this);
     }
-
-    static navigationOptions = {
-        headerTitle: () => <LogoTitle />,
-        headerLeft: () => null
-    };
 
     componentDidMount() {
         // ReactNativeHaptic.generate("impactLight")
@@ -165,7 +154,7 @@ class SignupScreen extends React.Component {
                             <TouchableOpacity
                                 style={styles.loginButton}
                                 onPress={() => this.props.navigation.push("Login")}>
-                                <Text style={styles.buttonText}>Back to Login 🔑</Text>
+                                <Text style={styles.buttonText}>⬅️ Back to Login 🔑</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

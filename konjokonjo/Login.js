@@ -2,7 +2,6 @@ import React from "react";
 import { Image, StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Keyboard, Alert, Dimensions } from "react-native";
 import SInfo from 'react-native-sensitive-info';
 import RNSharePointAuth from 'react-native-sp-auth'
-// import { useNavigation } from '@react-navigation/native';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -66,6 +65,7 @@ class LoginScreen extends React.Component {
         if (reg.test(text) === true) {
             const sp = new RNSharePointAuth("https://lssoftware.sharepoint.com/");
             const { digest, token } = await sp.login(this.state.email, this.state.password);
+            // add bad user/pass alert
             // WesleyScholl@LSsoftware.onmicrosoft.com
             // TAsgiBT$1$1
             if (token) {
@@ -74,25 +74,18 @@ class LoginScreen extends React.Component {
                 console.log(token)
                 this.onValueChange(STORAGE_KEY, token);
                 this.onValueChange(STORAGE_USER, this.state.email);
-                navigation.navigate('Home');
+                this.props.navigation.navigate('Home')
                 this.loginClear();
+            } else {
+                Alert.alert("The username or password did not match.");
             }
         } else {
             Alert.alert("Please enter a valid email.");
         }
+
     }
 
     render() {
-        // function LoginButtonTest() {
-        //     const navigation = useNavigation();
-        //     return (
-        //         <TouchableOpacity
-        //             style={styles.loginButton}
-        //             onPress={() => { navigation.navigate('Home') }}>
-        //             <Text style={styles.buttonText}>Login 🔑</Text>
-        //         </TouchableOpacity>
-        //     );
-        // }
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <ScrollView>
@@ -129,7 +122,7 @@ class LoginScreen extends React.Component {
                         <View style={styles.inputContainer}>
                             <TouchableOpacity
                                 style={styles.loginButton}
-                                onPress={() => { this.props.navigation.navigate('Home') }}>
+                                onPress={() => { this.handleLogin() }}>
                                 <Text style={styles.buttonText}>Login 🔑</Text>
                             </TouchableOpacity>
                             <TouchableOpacity

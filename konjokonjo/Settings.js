@@ -1,12 +1,21 @@
 import React from "react";
 import { View, StatusBar, Text, Button, Image, TouchableOpacity, StyleSheet, Platform, SafeAreaView, KeyboardAvoidingView, TextInput, Dimensions, PixelRatio, Alert, ScrollView } from 'react-native';
 import 'react-native-gesture-handler';
+import SInfo from "react-native-sensitive-info"
 
+const STORAGE_KEY = "id_token";
+const STORAGE_USER = "username";
 
 class Settings extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+    }
+
+    async handleLogout() {
+        await SInfo.deleteItem(STORAGE_KEY, {});
+        await SInfo.deleteItem(STORAGE_USER, {});
+        this.props.navigation.navigate("Login")
     }
 
     render() {
@@ -23,7 +32,11 @@ class Settings extends React.Component {
                 </View>
                 <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
                 <View style={styles.settingcard}>
-                    <Button title="Setting 3" onPress={() => Alert.alert('adjust setting 3')} />
+                    <TouchableOpacity
+                        style={{ borderWidth: 1, borderColor: "#12C16D", backgroundColor: "#12C16D", padding: 15, margin: 5, borderRadius: 15 }}
+                        onPress={() => this.handleLogout()}>
+                        <Text style={{ color: "#FFFFFF", fontSize: 20, textAlign: "center" }}>Logout ➡️🚪</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         );

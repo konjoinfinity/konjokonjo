@@ -12,13 +12,13 @@ class AuthLoadScreen extends React.Component {
         const userToken = await SInfo.getItem('id_token', {});
         setTimeout(() => {
             this.props.navigation.navigate(userToken ? 'App' : 'Auth');
-        }, 1500);
+        }, 2500);
     };
 
     render() {
         return (
             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: "#81c784" }}>
-                <Image source={require("./logo.png")} style={{ width: Dimensions.get('window').width * 0.80, height: Dimensions.get('window').height * 0.25 }} />
+                <Image source={require("./logo.png")} style={{ width: Dimensions.get('window').width * 0.95, height: Dimensions.get('window').height * 0.25 }} />
             </View>
         );
     }

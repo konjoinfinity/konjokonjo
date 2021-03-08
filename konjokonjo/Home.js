@@ -5,47 +5,59 @@ import {
 } from 'react-native';
 import 'react-native-gesture-handler';
 import RNSharePointAuth from 'react-native-sp-auth'
+import SInfo from 'react-native-sensitive-info';
+
+const STORAGE_KEY = "id_token";
+const STORAGE_USER = "username";
+
+class LogoTitle extends React.Component {
+    render() {
+        return (<Image source={require("./klogo.png")} style={{ width: 30, height: 30 }} />);
+    }
+}
 
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: ""
+            list: "",
+            email: "",
+            userToken: ""
         };
     }
 
-    // add show docs here
-    // componentDidMount() {   
-    // }
+    async getToken() {
+        const token = await SInfo.getItem(STORAGE_KEY, {});
+        this.setState({ userToken: token });
+        const username = await SInfo.getItem(STORAGE_USER, {});
+        this.setState({ email: username });
+    }
 
-    myLoginButton = async () => {
-        const sp = new RNSharePointAuth("https://lssoftware.sharepoint.com/");
-        const { digest, token } = await sp.login("WesleyScholl@LSsoftware.onmicrosoft.com ", "TAsgiBT$1$1");
-        if (token) {
-            await Alert.alert("Login Successful");
-            fetch("https://lssoftware.sharepoint.com/_api/Web/Lists(guid'4541133b-d5cc-4eff-8671-c72c134a06fa')/Items", {
-                method: "GET",
-                headers: {
-                    "Accept": "application/json;odata=verbose",
-                    "Cookie": token,
-                    "Content-Type": "application/json"
-                }
+    async componentDidMount() {
+        await this.getToken();
+        await fetch("https://lssoftware.sharepoint.com/_api/Web/Lists(guid'4541133b-d5cc-4eff-8671-c72c134a06fa')/Items", {
+            method: "GET",
+            headers: {
+                "Accept": "application/json;odata=verbose",
+                "Cookie": `${this.state.userToken}`,
+                "Content-Type": "application/json"
+            }
+        })
+            .then((y) => y.json())
+            .then((y) => {
+                // var conStr = "List Names:";
+                // y.d.results.Knowledge.forEach(function (item) {
+                //     conStr += item.Title + ", ";
+                // })
+                console.log(y.d.results)
+                this.setState({ list: y.d.results }).catch(error => {
+                    Alert.alert('Error' + `${error.message}!`);
+                });
             })
-                .then((y) => y.json())
-                .then((y) => {
-                    // var conStr = "List Names:";
-                    // y.d.results.Knowledge.forEach(function (item) {
-                    //     conStr += item.Title + ", ";
-                    // })
-                    console.log(y.d.results)
-                    this.setState({ list: y.d.results });
-                })
-        }
     }
 
     render() {
-        console.log(this.state)
         let lslist;
         this.state.list &&
             (lslist = this.state.list.map((item, id) => {
@@ -63,10 +75,9 @@ class Home extends React.Component {
         return (
             <ScrollView>
                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-
                     <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Konjo LifeSystem</Text>
-                    <TouchableOpacity style={styles.loginButton} onPress={() => this.myLoginButton()}>
-                        <Text style={{ fontSize: 20, textAlign: 'center' }}>Show Docs</Text>
+                    <TouchableOpacity style={styles.loginButton}>
+                        <Text style={{ fontSize: 20, textAlign: 'center' }}>Docs</Text>
                     </TouchableOpacity>
                     {lslist}
                 </View>
@@ -78,7 +89,7 @@ export default Home;
 
 const styles = StyleSheet.create({
     loginButton: {
-        borderColor: "#CCCCCC",
+        borderColor: "#81c784",
         borderWidth: 1,
         height: Dimensions.get('window').height * 0.08,
         width: Dimensions.get('window').width * 0.85,
@@ -86,6 +97,6 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 15,
         textAlign: "center",
-        backgroundColor: "green"
+        backgroundColor: "#81c784"
     },
 })
