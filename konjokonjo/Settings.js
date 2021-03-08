@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import 'react-native-gesture-handler';
 import SInfo from "react-native-sensitive-info"
+import LinearGradient from 'react-native-linear-gradient';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -34,13 +35,11 @@ class Settings extends React.Component {
                     <Button title="Setting 2" onPress={() => Alert.alert('adjust setting 2')} />
                 </View>
                 <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
-                <View style={styles.settingcard}>
-                    <TouchableOpacity
-                        style={{ borderWidth: 1, borderColor: "#12C16D", backgroundColor: "#12C16D", padding: 15, margin: 5, borderRadius: 15 }}
-                        onPress={() => this.handleLogout()}>
-                        <Text style={{ color: "#FFFFFF", fontSize: 20, textAlign: "center" }}>Logout ➡️🚪</Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity onPress={() => this.handleLogout()}>
+                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                        <Text style={styles.buttonText}>Logout ➡️🚪</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -57,5 +56,19 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 15,
         textAlign: "center"
+    },
+    linearGradient: {
+        borderRadius: 15,
+        width: Dimensions.get('window').width * 0.85,
+        height: Dimensions.get('window').height * 0.07
+
+    },
+    buttonText: {
+        fontSize: 18,
+        fontFamily: 'Gill Sans',
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
     }
 })

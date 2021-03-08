@@ -2,6 +2,7 @@ import React from "react";
 import { Image, StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Keyboard, Alert, Dimensions } from "react-native";
 import SInfo from 'react-native-sensitive-info';
 import RNSharePointAuth from 'react-native-sp-auth'
+import LinearGradient from 'react-native-linear-gradient';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -116,20 +117,20 @@ class LoginScreen extends React.Component {
                                 returnKeyType='send' />
                         </View>
                         <View style={styles.inputContainer}>
-                            <TouchableOpacity
-                                style={styles.loginButton}
-                                onPress={() => { this.handleLogin() }}>
-                                <Text style={styles.buttonText}>Login 🔑</Text>
+                            <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => this.handleLogin()}>
+                                <LinearGradient colors={['#81a1c7', '#5696db', '#007bff']} style={styles.linearGradient}>
+                                    <Text style={styles.buttonText}>Login 🔑</Text>
+                                </LinearGradient>
                             </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.signupButton}
-                                onPress={() => this.props.navigation.push("Signup")}>
-                                <Text style={styles.buttonText}>Don't have an Account? Signup! ⌨️</Text>
+                            <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => this.props.navigation.push("Signup")}>
+                                <LinearGradient colors={['#88cc88', '#7cb97c', '#669966']} style={styles.linearGradient}>
+                                    <Text style={styles.buttonText}>Don't have an Account? Signup! ⌨️</Text>
+                                </LinearGradient>
                             </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.checkButton}
-                                onPress={() => this.getUsername()}>
-                                <Text style={styles.buttonText}>Check User ❔</Text>
+                            <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => this.getUsername()}>
+                                <LinearGradient colors={['#8381c7', '#6360b6', '#752794']} style={styles.linearGradient}>
+                                    <Text style={styles.buttonText}>Check User ❔</Text>
+                                </LinearGradient>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -144,7 +145,8 @@ export default LoginScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 10
+        paddingTop: 10,
+        alignItems: "center"
     },
     header: {
         fontSize: 30,
@@ -158,9 +160,8 @@ const styles = StyleSheet.create({
         borderColor: "#CCCCCC",
         borderWidth: 1,
         height: 50,
+        width: Dimensions.get('window').width * 0.85,
         fontSize: Dimensions.get('window').height * 0.017,
-        paddingLeft: 20,
-        paddingRight: 20,
         borderRadius: 15,
         textAlign: "center"
     },
@@ -171,11 +172,6 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 5,
         borderRadius: 15
-    },
-    buttonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
     },
     checkButton: {
         borderWidth: 1,
@@ -192,5 +188,19 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 5,
         borderRadius: 15
+    },
+    linearGradient: {
+        borderRadius: 15,
+        width: Dimensions.get('window').width * 0.85,
+        height: Dimensions.get('window').height * 0.07
+
+    },
+    buttonText: {
+        fontSize: 18,
+        fontFamily: 'Gill Sans',
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
     }
 });

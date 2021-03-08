@@ -6,6 +6,7 @@ import {
 import 'react-native-gesture-handler';
 import RNSharePointAuth from 'react-native-sp-auth'
 import SInfo from 'react-native-sensitive-info';
+import LinearGradient from 'react-native-linear-gradient';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -24,24 +25,23 @@ class Home extends React.Component {
         return (
             <ScrollView>
                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Profile</Text>
-                    <TouchableOpacity style={styles.loginButton}>
-                        <Text style={{ fontSize: 20, textAlign: 'center' }}>Personal Docs</Text>
-                    </TouchableOpacity>
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
-                        <View style={styles.settingcard}>
-                            <Button title="Doc 1" onPress={() => Alert.alert('Open doc 1')} />
-                        </View>
-                        <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
-                        <View style={styles.settingcard}>
-                            <Button title="Doc 2" onPress={() => Alert.alert('Open doc 2')} />
-                        </View>
-                        <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
-                        <View style={styles.settingcard}>
-                            <Button title="Doc 3" onPress={() => Alert.alert('Open doc 3')} />
-                        </View>
-                    </View>
+                    <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Personal Docs</Text>
+
+                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                        <Text style={styles.buttonText}>Doc 1</Text>
+                    </LinearGradient>
+                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                        <Text style={styles.buttonText}>Doc 2</Text>
+                    </LinearGradient>
+                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                        <Text style={styles.buttonText}>Doc 3</Text>
+                    </LinearGradient>
+                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                        <Text style={styles.buttonText}>Doc 4</Text>
+                    </LinearGradient>
+                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                        <Text style={styles.buttonText}>Doc 5</Text>
+                    </LinearGradient>
                 </View>
             </ScrollView>
         );
@@ -69,6 +69,23 @@ const styles = StyleSheet.create({
         fontSize: 25,
         padding: 15,
         borderRadius: 15,
-        textAlign: "center"
+        textAlign: "center",
+        backgroundColor: "#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6)
+    },
+    linearGradient: {
+        flex: 1,
+        padding: 15,
+        borderRadius: 5,
+        margin: Dimensions.get('window').width * 0.04,
+        width: Dimensions.get('window').width * 0.75
+
+    },
+    buttonText: {
+        fontSize: 18,
+        fontFamily: 'Gill Sans',
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
     }
 })
