@@ -25,21 +25,35 @@ class Settings extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 20, padding: Dimensions.get('window').height * 0.04, textAlign: 'center' }}>Settings</Text>
-                <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
+                <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04, textAlign: 'center' }}>Settings</Text>
                 <View style={styles.settingcard}>
-                    <Button title="Setting 1" onPress={() => Alert.alert('adjust setting 1')} />
+                    <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => Alert.alert("Change Setting 1")}>
+                        <LinearGradient colors={['#81a1c7', '#5696db', '#007bff']} style={styles.linearGradient}>
+                            <Text style={styles.buttonText}>Setting 1</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
                 </View>
-                <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
                 <View style={styles.settingcard}>
-                    <Button title="Setting 2" onPress={() => Alert.alert('adjust setting 2')} />
+                    <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => Alert.alert("Change Setting 2")}>
+                        <LinearGradient colors={['#88cc88', '#7cb97c', '#669966']} style={styles.linearGradient}>
+                            <Text style={styles.buttonText}>Setting 2</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
                 </View>
-                <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
-                <TouchableOpacity onPress={() => this.handleLogout()}>
-                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
-                        <Text style={styles.buttonText}>Logout ➡️🚪</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
+                <View style={styles.settingcard}>
+                    <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => Alert.alert("Change Setting 3")}>
+                        <LinearGradient colors={['#8381c7', '#6360b6', '#752794']} style={styles.linearGradient}>
+                            <Text style={styles.buttonText}>Setting 3</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.settingcard}>
+                    <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => this.handleLogout()}>
+                        <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                            <Text style={styles.buttonText}>Logout ➡️🚪</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
@@ -50,21 +64,21 @@ const styles = StyleSheet.create({
     settingcard: {
         borderColor: "#CCCCCC",
         borderWidth: 1,
-        height: Dimensions.get('window').height * 0.15,
+        height: Dimensions.get('window').height * 0.14,
         width: Dimensions.get('window').width * 0.85,
-        fontSize: 25,
-        padding: 15,
+        margin: 10,
         borderRadius: 15,
-        textAlign: "center"
+        flex: 1,
+        alignItems: "center"
     },
     linearGradient: {
         borderRadius: 15,
-        width: Dimensions.get('window').width * 0.85,
+        width: Dimensions.get('window').width * 0.75,
         height: Dimensions.get('window').height * 0.07
 
     },
     buttonText: {
-        fontSize: 18,
+        fontSize: 20,
         fontFamily: 'Gill Sans',
         textAlign: 'center',
         margin: 10,

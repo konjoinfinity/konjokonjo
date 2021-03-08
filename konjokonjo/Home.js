@@ -27,21 +27,31 @@ class Home extends React.Component {
                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                     <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Personal Docs</Text>
 
-                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
-                        <Text style={styles.buttonText}>Doc 1</Text>
-                    </LinearGradient>
-                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
-                        <Text style={styles.buttonText}>Doc 2</Text>
-                    </LinearGradient>
-                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
-                        <Text style={styles.buttonText}>Doc 3</Text>
-                    </LinearGradient>
-                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
-                        <Text style={styles.buttonText}>Doc 4</Text>
-                    </LinearGradient>
-                    <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
-                        <Text style={styles.buttonText}>Doc 5</Text>
-                    </LinearGradient>
+                    <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.05 }} onPress={() => Alert.alert("Open Doc 1")}>
+                        <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                            <Text style={styles.buttonText}>Doc 1</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.05 }} onPress={() => Alert.alert("Open Doc 2")}>
+                        <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                            <Text style={styles.buttonText}>Doc 2</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.05 }} onPress={() => Alert.alert("Open Doc 3")}>
+                        <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                            <Text style={styles.buttonText}>Doc 3</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.05 }} onPress={() => Alert.alert("Open Doc 4")}>
+                        <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                            <Text style={styles.buttonText}>Doc 4</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.05 }} onPress={() => Alert.alert("Open Doc 5")}>
+                        <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
+                            <Text style={styles.buttonText}>Doc 5</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         );
@@ -73,15 +83,13 @@ const styles = StyleSheet.create({
         backgroundColor: "#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6)
     },
     linearGradient: {
-        flex: 1,
-        padding: 15,
-        borderRadius: 5,
-        margin: Dimensions.get('window').width * 0.04,
-        width: Dimensions.get('window').width * 0.75
+        borderRadius: 15,
+        width: Dimensions.get('window').width * 0.70,
+        height: Dimensions.get('window').height * 0.08
 
     },
     buttonText: {
-        fontSize: 18,
+        fontSize: 22,
         fontFamily: 'Gill Sans',
         textAlign: 'center',
         margin: 10,

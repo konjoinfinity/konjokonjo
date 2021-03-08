@@ -6,6 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
+const STORAGE_PASS = "password";
 
 class LoginScreen extends React.Component {
     constructor(props) {
@@ -68,6 +69,7 @@ class LoginScreen extends React.Component {
             await Alert.alert("Login Successful")
             this.onValueChange(STORAGE_KEY, token);
             this.onValueChange(STORAGE_USER, this.state.email);
+            this.onValueChange(STORAGE_PASS, this.state.password);
             this.props.navigation.navigate('Home')
             this.loginClear();
         } else {
