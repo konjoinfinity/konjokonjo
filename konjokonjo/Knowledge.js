@@ -94,7 +94,7 @@ class Knowledge extends React.Component {
         return (
             <ScrollView>
                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Global Knowledge</Text>
+                    <Text style={{ fontFamily: 'Gill Sans', fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Global Knowledge</Text>
                     {lslist}
                 </View>
             </ScrollView>

@@ -25,7 +25,7 @@ class Settings extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04, textAlign: 'center' }}>Settings</Text>
+                <Text style={{ fontFamily: 'Gill Sans', fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04, textAlign: 'center' }}>Settings</Text>
                 <View style={styles.settingcard}>
                     <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => Alert.alert("Change Setting 1")}>
                         <LinearGradient colors={['#81a1c7', '#5696db', '#007bff']} style={styles.linearGradient}>

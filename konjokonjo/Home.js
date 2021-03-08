@@ -25,7 +25,7 @@ class Home extends React.Component {
         return (
             <ScrollView>
                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Personal Docs</Text>
+                    <Text style={{ fontFamily: 'Gill Sans', fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Personal Docs</Text>
 
                     <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.05 }} onPress={() => Alert.alert("Open Doc 1")}>
                         <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>

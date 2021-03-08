@@ -180,7 +180,8 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 30,
         textAlign: "center",
-        margin: 10
+        margin: 10,
+        fontFamily: 'Gill Sans'
     },
     inputContainer: {
         paddingTop: 15
