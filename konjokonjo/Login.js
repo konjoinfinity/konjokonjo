@@ -68,8 +68,6 @@ class LoginScreen extends React.Component {
             // add bad user/pass alert
             if (token) {
                 await Alert.alert("Login Successful")
-                console.log(this.state)
-                console.log(token)
                 this.onValueChange(STORAGE_KEY, token);
                 this.onValueChange(STORAGE_USER, this.state.email);
                 this.props.navigation.navigate('Home')

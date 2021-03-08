@@ -1,9 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from "react-native";
-// import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
-// import konjoUrl from "./Urls";
-// import ReactNativeHaptic from 'react-native-haptic';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -24,7 +21,6 @@ class SignupScreen extends React.Component {
     }
 
     componentDidMount() {
-        // ReactNativeHaptic.generate("impactLight")
         console.log("Signup Loaded")
     }
 
@@ -74,10 +70,8 @@ class SignupScreen extends React.Component {
                 // .then(response => response.json())
                 // .then(responseData => {
                 //     if (responseData.error) {
-                //         // ReactNativeHaptic.generate("notificationError")
                 //         Alert.alert('Error' + `${responseData.error}`);
                 //     } else {
-                //         // ReactNativeHaptic.generate("impactLight")
                 //         this.onValueChange(STORAGE_KEY, responseData.token);
                 //         this.onValueChange(STORAGE_USER, this.state.email);
                 //         this.props.navigation.navigate("Home", { signup: true, email: this.state.email });
@@ -88,11 +82,9 @@ class SignupScreen extends React.Component {
                 //     console.log(err);
                 // });
             } else {
-                // ReactNativeHaptic.generate("notification")
                 Alert.alert("Passwords are required to have at least 8 characters.");
             }
         } else {
-            // ReactNativeHaptic.generate("notification")
             Alert.alert('Warning', "Please enter valid email.");
         }
     }

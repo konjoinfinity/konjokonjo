@@ -259,7 +259,7 @@ PODS:
     - React-Core
   - RNScreens (2.18.1):
     - React-Core
-  - RNSpAuth (1.0.34):
+  - RNSpAuth (1.1.2):
     - React
   - RNVectorIcons (8.1.0):
     - React-Core
@@ -414,7 +414,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
-  RNSpAuth: cdd978c2a5c70caa8a63532894af5ca2fffe297f
+  RNSpAuth: 98d3c2d15b581252e3bc080fe86ca27c1cbc6612
   RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 

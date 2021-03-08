@@ -1,5 +1,8 @@
 import React from "react";
-import { View, StatusBar, Text, Button, Image, TouchableOpacity, StyleSheet, Platform, SafeAreaView, KeyboardAvoidingView, TextInput, Dimensions, PixelRatio, Alert, ScrollView } from 'react-native';
+import {
+    View, StatusBar, Text, Button, Image, TouchableOpacity, StyleSheet, Platform, SafeAreaView, KeyboardAvoidingView, TextInput,
+    Dimensions, PixelRatio, Alert, ScrollView
+} from 'react-native';
 import 'react-native-gesture-handler';
 import SInfo from "react-native-sensitive-info"
 

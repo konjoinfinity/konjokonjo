@@ -10,13 +10,6 @@ import SInfo from 'react-native-sensitive-info';
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
 
-class LogoTitle extends React.Component {
-    render() {
-        return (<Image source={require("./klogo.png")} style={{ width: 30, height: 30 }} />);
-    }
-}
-
-
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -27,59 +20,28 @@ class Home extends React.Component {
         };
     }
 
-    async getToken() {
-        const token = await SInfo.getItem(STORAGE_KEY, {});
-        this.setState({ userToken: token });
-        const username = await SInfo.getItem(STORAGE_USER, {});
-        this.setState({ email: username });
-    }
-
-    async componentDidMount() {
-        await this.getToken();
-        await fetch("https://lssoftware.sharepoint.com/_api/Web/Lists(guid'4541133b-d5cc-4eff-8671-c72c134a06fa')/Items", {
-            method: "GET",
-            headers: {
-                "Accept": "application/json;odata=verbose",
-                "Cookie": `${this.state.userToken}`,
-                "Content-Type": "application/json"
-            }
-        })
-            .then((y) => y.json())
-            .then((y) => {
-                // var conStr = "List Names:";
-                // y.d.results.Knowledge.forEach(function (item) {
-                //     conStr += item.Title + ", ";
-                // })
-                console.log(y.d.results)
-                this.setState({ list: y.d.results }).catch(error => {
-                    Alert.alert('Error' + `${error.message}!`);
-                });
-            })
-    }
-
     render() {
-        let lslist;
-        this.state.list &&
-            (lslist = this.state.list.map((item, id) => {
-                return (
-                    <View style={{ borderRadius: 15, padding: Dimensions.get('window').height * 0.009, margin: Dimensions.get('window').height * 0.009 }} key={id}>
-                        <Text style={{ fontSize: Dimensions.get('window').height * 0.015, textAlign: "center", padding: Dimensions.get('window').height * 0.0000001 }}>
-                            {item.Title}
-                        </Text>
-                        <Text style={{ fontSize: Dimensions.get('window').height * 0.015, textAlign: "center", padding: Dimensions.get('window').width * 0.0000001 }}>
-                            Tags: {item.Tags}
-                        </Text>
-                    </View>
-                );
-            }));
         return (
             <ScrollView>
                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Konjo LifeSystem</Text>
+                    <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Profile</Text>
                     <TouchableOpacity style={styles.loginButton}>
-                        <Text style={{ fontSize: 20, textAlign: 'center' }}>Docs</Text>
+                        <Text style={{ fontSize: 20, textAlign: 'center' }}>Personal Docs</Text>
                     </TouchableOpacity>
-                    {lslist}
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                        <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
+                        <View style={styles.settingcard}>
+                            <Button title="Doc 1" onPress={() => Alert.alert('Open doc 1')} />
+                        </View>
+                        <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
+                        <View style={styles.settingcard}>
+                            <Button title="Doc 2" onPress={() => Alert.alert('Open doc 2')} />
+                        </View>
+                        <View style={{ padding: Dimensions.get('window').height * 0.01 }}></View>
+                        <View style={styles.settingcard}>
+                            <Button title="Doc 3" onPress={() => Alert.alert('Open doc 3')} />
+                        </View>
+                    </View>
                 </View>
             </ScrollView>
         );
@@ -99,4 +61,14 @@ const styles = StyleSheet.create({
         textAlign: "center",
         backgroundColor: "#81c784"
     },
+    settingcard: {
+        borderColor: "#CCCCCC",
+        borderWidth: 1,
+        height: Dimensions.get('window').height * 0.1,
+        width: Dimensions.get('window').width * 0.85,
+        fontSize: 25,
+        padding: 15,
+        borderRadius: 15,
+        textAlign: "center"
+    }
 })

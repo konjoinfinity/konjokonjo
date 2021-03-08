@@ -16,6 +16,7 @@ import IIcon from 'react-native-vector-icons/Ionicons'
 import Icon from "react-native-vector-icons/FontAwesome5"
 import MatIcon from "react-native-vector-icons/MaterialCommunityIcons"
 import MIcon from "react-native-vector-icons/MaterialIcons"
+import NewScreen from "./New"
 
 class LogoTitle extends React.Component {
     render() {
@@ -54,6 +55,16 @@ const AppStack = createStackNavigator({
                             <Text style={{ fontSize: 10, color: tintColor }}>Settings</Text></View>)
 
                 },
+            },
+            New: {
+                screen: NewScreen,
+                navigationOptions: {
+                    tabBarLabel: ({ tintColor }) => (
+                        <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "center", alignContent: "center", paddingTop: 2 }}>
+                            <IIcon name="ios-add" color={tintColor === '#ffffff' ? "#ACC086" : "#81c784"} size={25} />
+                            <Text style={{ fontSize: 10, color: tintColor }}>New</Text></View>)
+
+                },
             }
         },
             {
@@ -65,7 +76,7 @@ const AppStack = createStackNavigator({
                     indicatorStyle: { backgroundColor: "#81c784" },
                     labelStyle: { margin: 0, padding: 0 },
                     activeTintColor: "gray", inactiveTintColor: '#ffffff', upperCaseLabel: false, showLabel: true, showIcon: false,
-                    tabStyle: { height: Dimensions.get('window').height * 0.088, width: Dimensions.get('window').width * 0.33 }
+                    tabStyle: { height: Dimensions.get('window').height * 0.088, width: Dimensions.get('window').width * 0.25 }
                 }
             }),
         navigationOptions: ({ navigation }) => ({
