@@ -61,25 +61,18 @@ class LoginScreen extends React.Component {
     }
 
     async handleLogin() {
-        let text = this.state.email
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-        if (reg.test(text) === true) {
-            const sp = new RNSharePointAuth("https://lssoftware.sharepoint.com/");
-            const { digest, token } = await sp.login(this.state.email, this.state.password);
-            // add bad user/pass alert
-            if (token) {
-                await Alert.alert("Login Successful")
-                this.onValueChange(STORAGE_KEY, token);
-                this.onValueChange(STORAGE_USER, this.state.email);
-                this.props.navigation.navigate('Home')
-                this.loginClear();
-            } else {
-                Alert.alert("User does not have a valid token.");
-            }
+        const sp = new RNSharePointAuth("https://lssoftware.sharepoint.com/");
+        const { digest, token } = await sp.login(this.state.email + "@lssoftware.onmicrosoft.com", this.state.password);
+        // add bad user/pass alert
+        if (token) {
+            await Alert.alert("Login Successful")
+            this.onValueChange(STORAGE_KEY, token);
+            this.onValueChange(STORAGE_USER, this.state.email);
+            this.props.navigation.navigate('Home')
+            this.loginClear();
         } else {
-            Alert.alert("Please enter a valid email.");
+            Alert.alert("User does not have a valid token.");
         }
-
     }
 
     render() {
@@ -91,7 +84,7 @@ class LoginScreen extends React.Component {
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={styles.textInput}
-                                placeholder="Email"
+                                placeholder="Username"
                                 keyboardType="email-address"
                                 autoFocus={true}
                                 autoCapitalize="none"

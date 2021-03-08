@@ -1,6 +1,7 @@
 import React from "react";
-import { Image, StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert, Dimensions } from "react-native";
 import SInfo from 'react-native-sensitive-info';
+import LinearGradient from 'react-native-linear-gradient';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -138,7 +139,20 @@ class SignupScreen extends React.Component {
                                 returnKeyType='send' />
                         </View>
                         <View style={styles.inputContainer}>
-                            <TouchableOpacity
+
+                            <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => this.handleSignup()}>
+                                <LinearGradient colors={['#88cc88', '#7cb97c', '#669966']} style={styles.linearGradient}>
+                                    <Text style={styles.buttonText}>Signup ⌨️</Text>
+                                </LinearGradient>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => this.props.navigation.push("Login")}>
+                                <LinearGradient colors={['#81a1c7', '#5696db', '#007bff']} style={styles.linearGradient}>
+                                    <Text style={styles.buttonText}>⬅️ Back to Login 🔑</Text>
+                                </LinearGradient>
+                            </TouchableOpacity>
+
+
+                            {/* <TouchableOpacity
                                 style={styles.signupButton}
                                 onPress={() => this.handleSignup()}>
                                 <Text style={styles.buttonText}>Signup ⌨️</Text>
@@ -147,7 +161,7 @@ class SignupScreen extends React.Component {
                                 style={styles.loginButton}
                                 onPress={() => this.props.navigation.push("Login")}>
                                 <Text style={styles.buttonText}>⬅️ Back to Login 🔑</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </View>
                     </View>
                 </ScrollView>
@@ -160,7 +174,8 @@ export default SignupScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 10
+        paddingTop: 10,
+        alignItems: "center"
     },
     header: {
         fontSize: 30,
@@ -188,11 +203,6 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 15
     },
-    buttonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
     loginButton: {
         borderWidth: 1,
         borderColor: "#007BFF",
@@ -200,5 +210,19 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 5,
         borderRadius: 15
+    },
+    linearGradient: {
+        borderRadius: 15,
+        width: Dimensions.get('window').width * 0.85,
+        height: Dimensions.get('window').height * 0.07
+
+    },
+    buttonText: {
+        fontSize: 18,
+        fontFamily: 'Gill Sans',
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
     }
 });
