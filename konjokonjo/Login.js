@@ -66,8 +66,6 @@ class LoginScreen extends React.Component {
             const sp = new RNSharePointAuth("https://lssoftware.sharepoint.com/");
             const { digest, token } = await sp.login(this.state.email, this.state.password);
             // add bad user/pass alert
-            // WesleyScholl@LSsoftware.onmicrosoft.com
-            // TAsgiBT$1$1
             if (token) {
                 await Alert.alert("Login Successful")
                 console.log(this.state)

@@ -60,33 +60,33 @@ class SignupScreen extends React.Component {
         if (reg.test(text) === true) {
             if (this.state.password.length >= 8) {
                 Alert.alert("Add POST for user signup")
-                    // fetch(konjoUrl + "users/signup", {
-                    //     method: "POST",
-                    //     headers: {
-                    //         "Content-type": "application/json"
-                    //     },
-                    //     body: JSON.stringify({
-                    //         email: this.state.email,
-                    //         password: this.state.password,
-                    //         confirmpass: this.state.confirmpass
-                    //     })
-                    // })
-                    .then(response => response.json())
-                    .then(responseData => {
-                        if (responseData.error) {
-                            // ReactNativeHaptic.generate("notificationError")
-                            Alert.alert('Error' + `${responseData.error}`);
-                        } else {
-                            // ReactNativeHaptic.generate("impactLight")
-                            this.onValueChange(STORAGE_KEY, responseData.token);
-                            this.onValueChange(STORAGE_USER, this.state.email);
-                            this.props.navigation.navigate("Home", { signup: true, email: this.state.email });
-                            this.loginClear();
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
+                // fetch(konjoUrl + "users/signup", {
+                //     method: "POST",
+                //     headers: {
+                //         "Content-type": "application/json"
+                //     },
+                //     body: JSON.stringify({
+                //         email: this.state.email,
+                //         password: this.state.password,
+                //         confirmpass: this.state.confirmpass
+                //     })
+                // })
+                // .then(response => response.json())
+                // .then(responseData => {
+                //     if (responseData.error) {
+                //         // ReactNativeHaptic.generate("notificationError")
+                //         Alert.alert('Error' + `${responseData.error}`);
+                //     } else {
+                //         // ReactNativeHaptic.generate("impactLight")
+                //         this.onValueChange(STORAGE_KEY, responseData.token);
+                //         this.onValueChange(STORAGE_USER, this.state.email);
+                //         this.props.navigation.navigate("Home", { signup: true, email: this.state.email });
+                //         this.loginClear();
+                //     }
+                // })
+                // .catch(err => {
+                //     console.log(err);
+                // });
             } else {
                 // ReactNativeHaptic.generate("notification")
                 Alert.alert("Passwords are required to have at least 8 characters.");
