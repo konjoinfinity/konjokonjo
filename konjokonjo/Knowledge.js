@@ -66,6 +66,7 @@ class Knowledge extends React.Component {
         }).then((y) => y.json())
             .then((y) => {
                 this.setState({ list: y.d.results })
+                console.log(y.d.results)
             })
     }
 

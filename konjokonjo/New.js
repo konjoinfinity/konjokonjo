@@ -130,9 +130,11 @@ class New extends React.Component {
     }
 
 
-    handleChange(html) {
-        this.richHTML = html;
-        this.setState({ a: Math.random });
+    handleChange(data) {
+        // html
+        // this.richHTML = html;
+        // this.setState({ a: Math.random });
+        console.log(data)
     }
 
     handleHeightChange(height) {
@@ -198,10 +200,8 @@ class New extends React.Component {
     }
 
     handleEmoji() {
-        const { emojiVisible } = this.state;
         Keyboard.dismiss();
-        this.richText.current?.blurContentEditor();
-        this.setState({ emojiVisible: !emojiVisible });
+        this.state.emojiVisible == false ? this.setState({ emojiVisible: true }) : this.setState({ emojiVisible: false })
     }
 
     insertVideo() {
@@ -222,7 +222,7 @@ class New extends React.Component {
         // this.richText.current?.insertHTML(
         //     `<span onclick="alert(2)" style="color: blue; padding:0 10px;" contenteditable="false">HTML</span>`,
         // );
-        this.richText.current?.insertHTML(
+        this.richText.insertHTML(
             `<div style="padding:10px 0;" contentEditable="false">
                 <iframe  width="100%" height="220"  src="https://www.youtube.com/embed/6FrNXgXlCGA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>`,
@@ -329,8 +329,8 @@ class New extends React.Component {
                         disabledIconTint={'#bfbfbf'}
                         onPressAddImage={this.onPressAddImage}
                         onInsertLink={this.onInsertLink}
-                        // iconSize={24}
-                        // iconGap={10}
+                        iconSize={24}
+                        iconGap={10}
                         actions={[
                             actions.undo,
                             actions.redo,
@@ -345,7 +345,6 @@ class New extends React.Component {
                             actions.alignRight,
                             actions.code,
                             actions.line,
-
                             actions.heading1,
                             actions.heading4,
                             'insertEmoji',
