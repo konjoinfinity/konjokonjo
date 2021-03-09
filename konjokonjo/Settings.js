@@ -6,6 +6,9 @@ import {
 import 'react-native-gesture-handler';
 import SInfo from "react-native-sensitive-info"
 import LinearGradient from 'react-native-linear-gradient';
+import * as Animatable from 'react-native-animatable';
+
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -26,34 +29,50 @@ class Settings extends React.Component {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ fontFamily: 'Gill Sans', fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04, textAlign: 'center' }}>Settings</Text>
-                <View style={styles.settingcard}>
+                <AnimatableView
+                    animation="bounceInRight"
+                    delay={10}
+                    duration={1500}
+                    style={styles.settingcard}>
                     <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => Alert.alert("Change Setting 1")}>
                         <LinearGradient colors={['#81a1c7', '#5696db', '#007bff']} style={styles.linearGradient}>
                             <Text style={styles.buttonText}>Setting 1</Text>
                         </LinearGradient>
                     </TouchableOpacity>
-                </View>
-                <View style={styles.settingcard}>
+                </AnimatableView>
+                <AnimatableView
+                    animation="bounceInRight"
+                    delay={50}
+                    duration={1500}
+                    style={styles.settingcard}>
                     <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => Alert.alert("Change Setting 2")}>
                         <LinearGradient colors={['#88cc88', '#7cb97c', '#669966']} style={styles.linearGradient}>
                             <Text style={styles.buttonText}>Setting 2</Text>
                         </LinearGradient>
                     </TouchableOpacity>
-                </View>
-                <View style={styles.settingcard}>
+                </AnimatableView>
+                <AnimatableView
+                    animation="bounceInRight"
+                    delay={90}
+                    duration={1500}
+                    style={styles.settingcard}>
                     <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => Alert.alert("Change Setting 3")}>
                         <LinearGradient colors={['#8381c7', '#6360b6', '#752794']} style={styles.linearGradient}>
                             <Text style={styles.buttonText}>Setting 3</Text>
                         </LinearGradient>
                     </TouchableOpacity>
-                </View>
-                <View style={styles.settingcard}>
+                </AnimatableView>
+                <AnimatableView
+                    animation="bounceInRight"
+                    delay={130}
+                    duration={1500}
+                    style={styles.settingcard}>
                     <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.018 }} onPress={() => this.handleLogout()}>
                         <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
                             <Text style={styles.buttonText}>Logout ➡️🚪</Text>
                         </LinearGradient>
                     </TouchableOpacity>
-                </View>
+                </AnimatableView>
             </View>
         );
     }

@@ -8,6 +8,9 @@ import RNSharePointAuth from 'react-native-sp-auth'
 import SInfo from 'react-native-sensitive-info';
 import LinearGradient from 'react-native-linear-gradient';
 import Knowledge from "./Knowledge";
+import * as Animatable from 'react-native-animatable';
+
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -100,7 +103,11 @@ class Home extends React.Component {
             <ScrollView>
                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                     <Text style={{ fontFamily: 'Gill Sans', fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Personal Docs</Text>
-                    {userlist}
+                    <AnimatableView animation={this.state.list ? "bounceInUp" : undefined}
+                        delay={10}
+                        duration={1500}>
+                        {userlist}
+                    </AnimatableView>
                 </View>
             </ScrollView>
         );
@@ -134,11 +141,11 @@ const styles = StyleSheet.create({
     linearGradient: {
         borderRadius: 15,
         width: Dimensions.get('window').width * 0.70,
-        height: Dimensions.get('window').height * 0.08
+        height: Dimensions.get('window').height * 0.1
 
     },
     buttonText: {
-        fontSize: Dimensions.get('window').height * 0.015,
+        fontSize: Dimensions.get('window').height * 0.02,
         fontFamily: 'Gill Sans',
         textAlign: 'center',
         margin: 5,

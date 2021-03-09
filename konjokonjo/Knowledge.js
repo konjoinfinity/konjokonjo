@@ -1,13 +1,36 @@
 import React from "react";
 import {
     View, StatusBar, Text, Button, Image, TouchableOpacity, StyleSheet, Platform, SafeAreaView, KeyboardAvoidingView,
-    TextInput, Dimensions, PixelRatio, Alert, ScrollView, Linking
+    TextInput, Dimensions, PixelRatio, Alert, ScrollView, Linking, Animated, Easing
 } from 'react-native';
 import 'react-native-gesture-handler';
 import RNSharePointAuth from 'react-native-sp-auth'
 import SInfo from 'react-native-sensitive-info';
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationEvents } from "react-navigation"
+import * as Animatable from 'react-native-animatable';
+
+AnimatableView = Animatable.createAnimatableComponent(View);
+
+spinValue = new Animated.Value(0);
+
+Animated.loop(
+    Animated.timing(
+        this.spinValue,
+        {
+            toValue: 1,
+            duration: 10000,
+            easing: Easing.linear,
+            useNativeDriver: true
+        }
+    )
+).start();
+
+// Next, interpolate beginning and end values (in this case 0 and 1)
+const spin = this.spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg']
+})
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -144,16 +167,10 @@ class Knowledge extends React.Component {
                 </View>
             )));
         return (
-            // <ScrollView>
-            //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-            //         <Text style={{ fontFamily: 'Gill Sans', fontSize: Dimensions.get('window').height * 0.03, padding: Dimensions.get('window').height * 0.04 }}>Global Knowledge</Text>
-            //         {results}
-            //     </View>
-            // </ScrollView>
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <NavigationEvents onDidFocus={() => this.textInput.focus()} />
                 <ScrollView ref={ref => this.scrollView = ref}>
-                    <View style={{ borderRadius: 15 }}>
+                    <View style={{ borderRadius: 15, paddingTop: 5 }}>
                         <Text style={styles.header}>Global Docs</Text>
                         <View style={styles.inputContainer}>
                             <TextInput
@@ -174,12 +191,18 @@ class Knowledge extends React.Component {
                                 justifyContent: 'center',
                                 alignItems: 'center'
                             }}>
-                                <Image source={require("./klogo.png")}
-                                    style={{ width: 180, height: 180 }} />
+                                <Animated.Image source={require("./konjosun.png")}
+                                    style={{
+                                        width: Dimensions.get('window').width * 0.6, height: Dimensions.get('window').height * 0.32,
+                                        marginTop: 15, transform: [{ rotate: spin }]
+                                    }} resizeMode={"contain"} />
                             </View>
                         </View>}
                     {this.state.search !== "" &&
-                        <View style={{ marginTop: Dimensions.get('window').height * 0.025, flexDirection: "row", flexWrap: "wrap", justifyContent: "center", backgroundColor: "#12C16D", borderRadius: 15 }}>
+                        <View style={{
+                            marginTop: Dimensions.get('window').height * 0.025, flexDirection: "row", flexWrap: "wrap",
+                            justifyContent: "center", backgroundColor: "#12C16D", borderRadius: 15
+                        }}>
                             {results}
                         </View>}
                     {newsearch}
@@ -227,7 +250,15 @@ const styles = StyleSheet.create({
         fontSize: Dimensions.get('window').height * 0.025,
         width: Dimensions.get('window').width * 0.85,
         borderRadius: 15,
-        textAlign: "center"
+        textAlign: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5
     },
     communityButtonText: {
         color: "#FFFFFF",
