@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         height: 50,
         width: Dimensions.get('window').width * 0.85,
-        fontSize: Dimensions.get('window').height * 0.017,
+        fontSize: Dimensions.get('window').height * 0.025,
         borderRadius: 15,
         textAlign: "center"
     },

@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         fontSize: Dimensions.get('window').height * 0.015,
         fontFamily: 'Gill Sans',
         textAlign: 'center',
-        margin: 10,
+        margin: 5,
         color: '#ffffff',
         backgroundColor: 'transparent',
     }

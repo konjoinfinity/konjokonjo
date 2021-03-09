@@ -179,7 +179,7 @@ class Knowledge extends React.Component {
                             </View>
                         </View>}
                     {this.state.search !== "" &&
-                        <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center", backgroundColor: "#12C16D", borderRadius: 15 }}>
+                        <View style={{ marginTop: Dimensions.get('window').height * 0.025, flexDirection: "row", flexWrap: "wrap", justifyContent: "center", backgroundColor: "#12C16D", borderRadius: 15 }}>
                             {results}
                         </View>}
                     {newsearch}
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
         borderColor: "#CCCCCC",
         borderWidth: 1,
         height: 50,
-        fontSize: 25,
+        fontSize: Dimensions.get('window').height * 0.025,
         width: Dimensions.get('window').width * 0.85,
         borderRadius: 15,
         textAlign: "center"
