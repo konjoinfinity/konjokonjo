@@ -135,10 +135,11 @@ class New extends React.Component {
         // this.richHTML = html;
         // this.setState({ a: Math.random });
         console.log(data)
+        console.log(this.state)
     }
 
     handleHeightChange(height) {
-        console.log('editor height change:', height);
+        // console.log('editor height change:', height);
     }
 
     handlePaste = data => {
