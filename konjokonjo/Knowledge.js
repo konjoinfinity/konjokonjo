@@ -7,6 +7,7 @@ import 'react-native-gesture-handler';
 import RNSharePointAuth from 'react-native-sp-auth'
 import SInfo from 'react-native-sensitive-info';
 import LinearGradient from 'react-native-linear-gradient';
+import { NavigationEvents } from "react-navigation"
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -150,20 +151,20 @@ class Knowledge extends React.Component {
             //     </View>
             // </ScrollView>
             <KeyboardAvoidingView style={styles.container} behavior="padding">
+                <NavigationEvents onDidFocus={() => this.textInput.focus()} />
                 <ScrollView ref={ref => this.scrollView = ref}>
                     <View style={{ borderRadius: 15 }}>
                         <Text style={styles.header}>Global Docs</Text>
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={styles.textInput}
-                                autoFocus={true}
                                 autoCapitalize="none"
                                 placeholder="Search"
                                 name="searchtext"
                                 id="searchtext"
                                 onChangeText={this.handleChange}
-                                value={this.state.search} />
-                            {/* ref={(input) => { this.textInput = input; }}  */}
+                                value={this.state.search}
+                                ref={(input) => { this.textInput = input; }} />
                         </View>
                     </View>
                     {this.state.search === "" &&

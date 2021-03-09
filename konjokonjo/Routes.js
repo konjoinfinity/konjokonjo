@@ -86,7 +86,7 @@ const AppStack = createStackNavigator({
             headerTitleStyle: {
                 color: "#ffffff", fontSize: 25, fontWeight: '400'
             },
-            headerRight: null,
+            headerRight: () => null,
             // () => (<View style={{ flexDirection: "row" }}>
             //     <TouchableOpacity accessibilityLabel="Logout" style={{
             //         height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginRight: 15,
@@ -95,7 +95,7 @@ const AppStack = createStackNavigator({
             //         {/* onPress={() => navigation.push("PubChat")} */}
             //         <MIcon name="logout" color="#43a047" size={18} style={{ height: 18, width: 18, textAlign: 'center' }} /></TouchableOpacity>
             // </View>),
-            headerLeft: null
+            headerLeft: () => null
             // () => (<View style={{ flexDirection: "row" }}>
             //     <TouchableOpacity accessibilityLabel="info" style={{
             //         height: 30, width: 30, alignItems: 'center', justifyContent: 'center', marginLeft: 15,
