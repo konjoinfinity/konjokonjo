@@ -1,7 +1,7 @@
 import React from "react";
 import {
     View, StatusBar, Text, Button, Image, TouchableOpacity, StyleSheet, Platform, SafeAreaView, KeyboardAvoidingView,
-    TextInput, Dimensions, PixelRatio, Alert, ScrollView
+    TextInput, Dimensions, PixelRatio, Alert, ScrollView, Linking
 } from 'react-native';
 import 'react-native-gesture-handler';
 import RNSharePointAuth from 'react-native-sp-auth'
@@ -118,7 +118,8 @@ class Knowledge extends React.Component {
                         }}
                         onPress={() =>
                             // this.props.navigation.push("Community", { communityId: `${community._id}` })
-                            Alert.alert("Open: " + `${item.Title}`)}>
+                            // Alert.alert("Open: " + `${item.Title}`)
+                            Linking.openURL("https://lssoftware.sharepoint.com/Knowledge/" + `${item.Title}`)}>
                         <Text style={styles.communityButtonText}>{item.Title}</Text>
                     </TouchableOpacity>
                 );
