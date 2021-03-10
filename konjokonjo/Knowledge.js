@@ -26,7 +26,6 @@ Animated.loop(
     )
 ).start();
 
-// Next, interpolate beginning and end values (in this case 0 and 1)
 const spin = this.spinValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg']
@@ -108,6 +107,7 @@ class Knowledge extends React.Component {
         let search;
         this.state.list && (
             (search = this.state.search.trim().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, "").toLowerCase()))
+        // add a method to search tags, combine, then filter out duplicates (would this slow down the search?)
         this.state.list &&
             search.length > 0 && (
                 (listSearch = listSearch.filter(function (item) {

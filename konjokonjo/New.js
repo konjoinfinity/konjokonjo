@@ -67,6 +67,7 @@ class New extends React.Component {
         this.setModalVisible = this.setModalVisible.bind(this);
         this.setTitle = this.setTitle.bind(this);
         this.setURL = this.setURL.bind(this);
+        this.onKeyShow = this.onKeyShow.bind(this);
     }
 
     componentDidMount() {
@@ -83,8 +84,13 @@ class New extends React.Component {
 
     onKeyHide = () => { };
 
-    onKeyShow = () => {
+    onKeyShow(e) {
         TextInput.State.currentlyFocusedInput() && this.setState({ emojiVisible: false });
+        this.setState({
+            keyboardHeight: e.endCoordinates.height,
+            normalHeight: Dimensions.get('window').height,
+            shortHeight: Dimensions.get('window').height - e.endCoordinates.height
+        }, () => console.log(this.state))
     };
 
     setModalVisible(visible) {
@@ -319,6 +325,7 @@ class New extends React.Component {
                         pasteAsPlainText={true}
                     />
                 </ScrollView>
+                {/* Add conditional rendering based on screen size for vert offset */}
                 <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} keyboardVerticalOffset={95}>
                     <RichToolbar
                         style={[styles.richBar, dark && styles.richBarDark]}
