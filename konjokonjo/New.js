@@ -86,11 +86,11 @@ class New extends React.Component {
 
     onKeyShow(e) {
         TextInput.State.currentlyFocusedInput() && this.setState({ emojiVisible: false });
-        this.setState({
-            keyboardHeight: e.endCoordinates.height,
-            normalHeight: Dimensions.get('window').height,
-            shortHeight: Dimensions.get('window').height - e.endCoordinates.height
-        }, () => console.log(this.state))
+        // this.setState({
+        //     keyboardHeight: e.endCoordinates.height,
+        //     normalHeight: Dimensions.get('window').height,
+        //     shortHeight: Dimensions.get('window').height - e.endCoordinates.height
+        // }, () => console.log(this.state))
     };
 
     setModalVisible(visible) {
@@ -140,8 +140,8 @@ class New extends React.Component {
         // html
         // this.richHTML = html;
         // this.setState({ a: Math.random });
-        console.log(data)
-        console.log(this.state)
+        // console.log(data)
+        // console.log(this.state)
     }
 
     handleHeightChange(height) {
@@ -149,7 +149,7 @@ class New extends React.Component {
     }
 
     handlePaste = data => {
-        console.log('Paste:', data);
+        // console.log('Paste:', data);
     };
 
     handleKeyUp = data => {
@@ -175,7 +175,7 @@ class New extends React.Component {
             case 'SwitchImage':
                 break;
         }
-        console.log('onMessage', type, id, data);
+        // console.log('onMessage', type, id, data);
     };
 
     handleFocus = () => {

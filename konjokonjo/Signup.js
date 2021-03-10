@@ -22,7 +22,7 @@ class SignupScreen extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Signup Loaded")
+        // console.log("Signup Loaded")
     }
 
     handleEmailChange(email) {
