@@ -1,7 +1,7 @@
 import React from "react";
 import {
     View, StatusBar, Text, Button, Image, TouchableOpacity, StyleSheet, Platform, SafeAreaView,
-    KeyboardAvoidingView, TextInput, Dimensions, PixelRatio, Alert, ScrollView
+    KeyboardAvoidingView, TextInput, Dimensions, PixelRatio, Alert, ScrollView, Linking
 } from 'react-native';
 import 'react-native-gesture-handler';
 import RNSharePointAuth from 'react-native-sp-auth'
@@ -59,8 +59,6 @@ class Home extends React.Component {
         }
         const userToken = await SInfo.getItem(STORAGE_KEY, {});
         // await this.getToken()
-        // https://abcd.sharepoint.com/sites/RohitW/_api/Web/lists/getbytitle('DocLibTest1')/RootFolder
-        // https://hostssite/apps/TestAppsite/_api/Web/Lists/GetByTitle(‘Divisions’)/items?$select=*&$filter=Title eq ‘test1’
         await fetch("https://lssoftware.sharepoint.com/_api/Web/Lists(guid'4541133b-d5cc-4eff-8671-c72c134a06fa')/Items", {
             method: "GET",
             headers: {
@@ -70,8 +68,6 @@ class Home extends React.Component {
             }
         }).then((y) => y.json())
             .then((y) => {
-                // this.setState({ list: y.d.results })
-                console.log(y)
                 this.setState({ list: y.d.results })
             })
     }
@@ -86,7 +82,8 @@ class Home extends React.Component {
             (userlist = filterlist.map((item, id) => {
                 return (
                     <View key={id}>
-                        <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.03 }} onPress={() => Alert.alert("Open: " + `${item.Title}`)}>
+                        <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.03 }}
+                            onPress={() => Linking.openURL("https://lssoftware.sharepoint.com/Knowledge/" + `${item.Title}`)}>
                             <LinearGradient colors={['#c7a681', '#b09373', '#9d8367']} style={styles.linearGradient}>
                                 <Text style={styles.buttonText}>
                                     {item.Title}
@@ -141,7 +138,7 @@ const styles = StyleSheet.create({
     linearGradient: {
         borderRadius: 15,
         width: Dimensions.get('window').width * 0.70,
-        height: Dimensions.get('window').height * 0.1
+        height: Dimensions.get('window').height * 0.12
 
     },
     buttonText: {

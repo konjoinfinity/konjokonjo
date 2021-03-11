@@ -93,7 +93,6 @@ class Knowledge extends React.Component {
         }).then((y) => y.json())
             .then((y) => {
                 this.setState({ list: y.d.results })
-                console.log(y.d.results)
             })
     }
 
@@ -118,18 +117,6 @@ class Knowledge extends React.Component {
         this.state.list &&
             (results = listSearch.map((item, id) => {
                 return (
-                    // <View key={id}>
-                    //     <TouchableOpacity style={{ marginTop: Dimensions.get('window').height * 0.03 }} onPress={() => Alert.alert("Open: " + `${item.Title}`)}>
-                    //         <LinearGradient colors={['#81a1c7', '#5696db', '#007bff']} style={styles.linearGradient}>
-                    //             <Text style={styles.buttonText}>
-                    //                 {item.Title}
-                    //             </Text>
-                    //             <Text style={styles.buttonText}>
-                    //                 Tags: {item.Tags}
-                    //             </Text>
-                    //         </LinearGradient>
-                    //     </TouchableOpacity>
-                    // </View>
                     <TouchableOpacity
                         key={id}
                         style={{
@@ -140,10 +127,7 @@ class Knowledge extends React.Component {
                             margin: 5,
                             borderRadius: 15
                         }}
-                        onPress={() =>
-                            // this.props.navigation.push("Community", { communityId: `${community._id}` })
-                            // Alert.alert("Open: " + `${item.Title}`)
-                            Linking.openURL("https://lssoftware.sharepoint.com/Knowledge/" + `${item.Title}`)}>
+                        onPress={() => Linking.openURL("https://lssoftware.sharepoint.com/Knowledge/" + `${item.Title}`)}>
                         <Text style={styles.communityButtonText}>{item.Title}</Text>
                     </TouchableOpacity>
                 );
@@ -157,11 +141,7 @@ class Knowledge extends React.Component {
                     <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>Create a New Doc</Text>
                     <TouchableOpacity
                         style={styles.newButton}
-                        onPress={() =>
-                            // this.props.navigation.push("SearchNew", {
-                            //     newName: this.state.search })
-                            Alert.alert("Create: " + `${this.state.search}`)
-                        }>
+                        onPress={() => Alert.alert("Create: " + `${this.state.search}`)}>
                         <Text style={styles.newButtonText}>➕ {this.state.search}</Text>
                     </TouchableOpacity>
                 </View>

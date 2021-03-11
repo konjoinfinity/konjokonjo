@@ -150,8 +150,6 @@ class SignupScreen extends React.Component {
                                     <Text style={styles.buttonText}>⬅️ Back to Login 🔑</Text>
                                 </LinearGradient>
                             </TouchableOpacity>
-
-
                             {/* <TouchableOpacity
                                 style={styles.signupButton}
                                 onPress={() => this.handleSignup()}>

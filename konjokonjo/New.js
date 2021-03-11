@@ -86,6 +86,7 @@ class New extends React.Component {
 
     onKeyShow(e) {
         TextInput.State.currentlyFocusedInput() && this.setState({ emojiVisible: false });
+        // Show keyboard height
         // this.setState({
         //     keyboardHeight: e.endCoordinates.height,
         //     normalHeight: Dimensions.get('window').height,
